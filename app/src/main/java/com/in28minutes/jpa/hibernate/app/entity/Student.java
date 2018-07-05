@@ -14,7 +14,7 @@ public class Student {
 
 	@Column(nullable = false)
 	private String name;
-	
+
 	@OneToOne
 	private Passport passport;
 
@@ -40,6 +40,14 @@ public class Student {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Passport getPassport() {
+		return passport;
+	}
+
+	public void setPassport(Passport passport) {
+		this.passport = passport;
 	}
 
 	@Override
