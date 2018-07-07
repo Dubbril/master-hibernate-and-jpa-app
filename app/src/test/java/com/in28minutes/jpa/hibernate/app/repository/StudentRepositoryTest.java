@@ -1,6 +1,7 @@
 package com.in28minutes.jpa.hibernate.app.repository;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,10 +27,17 @@ public class StudentRepositoryTest {
 	EntityManager em;
 
 	@Test
+	public void someTest() {
+		studentRepository.sumOperationToUnderstandPersistanceContext();
+	}
+
+	@Test
+	@Transactional
 	public void retrievesStudentAndPassportDetails() {
 		Student student = em.find(Student.class, 20001L);
 		logger.info("student -> {} ", student);
-		logger.info("student.getPassport() -> {} ", student.getPassport());
+		logger.info("passport -> {} ", student.getPassport());
+
 	}
 
 }

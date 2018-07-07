@@ -46,4 +46,18 @@ public class StudentRepository {
 		em.persist(student);
 	}
 
+	public void sumOperationToUnderstandPersistanceContext() {
+		// Database Operation 1 - Retrieve student
+		Student student = em.find(Student.class, 20001L);
+
+		// Database Operation 2 - Retrieve passport
+		Passport passport = student.getPassport();
+
+		// Database Operation 3 - Update passport
+		passport.setNumber("E123457");
+
+		// Database Operation 4 - Update student
+		student.setName("Ranga - updated");
+	}
+
 }
