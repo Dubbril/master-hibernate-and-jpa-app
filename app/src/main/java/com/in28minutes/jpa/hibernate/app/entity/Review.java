@@ -3,6 +3,7 @@ package com.in28minutes.jpa.hibernate.app.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Review {
@@ -12,6 +13,8 @@ public class Review {
 
 	private String description;
 	private String rating;
+	@ManyToOne
+	private Course course;
 
 	public Review() {
 
@@ -44,6 +47,14 @@ public class Review {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 	@Override

@@ -2,8 +2,10 @@ package com.in28minutes.jpa.hibernate.app.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Passport {
@@ -14,6 +16,9 @@ public class Passport {
 	@Column(nullable = false)
 	private String number;
 
+	@OneToOne(fetch = FetchType.LAZY ,mappedBy="passport")
+	private Student student;
+
 	public Passport() {
 
 	}
@@ -22,7 +27,7 @@ public class Passport {
 		this.number = number;
 	}
 
-	public String getNumber() { 
+	public String getNumber() {
 		return number;
 	}
 
@@ -37,7 +42,14 @@ public class Passport {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 	@Override
 	public String toString() {
