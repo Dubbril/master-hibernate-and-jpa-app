@@ -76,7 +76,7 @@ public class Course {
 		return students;
 	}
 
-	public void setStudent(Student student) {
+	public void addStudent(Student student) {
 		this.students.add(student);
 	}
 
