@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.in28minutes.jpa.hibernate.app.AppApplication;
 import com.in28minutes.jpa.hibernate.app.entity.Course;
@@ -75,7 +76,7 @@ public class CourseRepositoryTest {
 	}
 
 	@Test
-	@Transactional
+	@Transactional(isolation=Isolation.REPEATABLE_READ)
 	public void retrieveCourseForReview() {
 		Review review = em.find(Review.class, 50001L);
 		logger.info("review.getReviews() -> {} ", review.getCourse());
