@@ -12,18 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.in28minutes.jpa.hibernate.app.entity.Course;
 import com.in28minutes.jpa.hibernate.app.entity.Review;
+import com.in28minutes.jpa.hibernate.app.entity.ReviewRating;
 
 @Repository
 @Transactional
 public class CourseRepository {
 
 	@Autowired
-	EntityManager em;
+	private EntityManager em;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public Course findById(Long id) {
-		return em.find(Course.class, id);
+		Course course = em.find(Course.class, id);
+		logger.info("Course -> {} ",course);
+		return course;
 	}
 
 	public void deleteById(Long id) {
@@ -54,8 +57,8 @@ public class CourseRepository {
 		logger.info("course.getReviews() -> {} ", course.getReviews());
 
 		// add 2 review to it
-		Review review1 = new Review("5", "Great Hand-on Stuff.");
-		Review review2 = new Review("5", "Hatsoff.");
+		Review review1 = new Review(ReviewRating.FIVE, "Great Hand-on Stuff.");
+		Review review2 = new Review(ReviewRating.FIVE, "Hatsoff.");
 
 		course.addReviews(review1);
 		review1.setCourse(course);

@@ -1,6 +1,8 @@
 package com.in28minutes.jpa.hibernate.app.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,7 +14,10 @@ public class Review {
 	private Long id;
 
 	private String description;
-	private String rating;
+	
+	@Enumerated(EnumType.STRING)
+	private ReviewRating rating;
+	
 	@ManyToOne
 	private Course course;
 
@@ -20,16 +25,16 @@ public class Review {
 
 	}
 
-	public Review(String rating, String descript) {
+	public Review(ReviewRating rating, String descript) {
 		this.rating = rating;
 		this.description = descript;
 	}
 
-	public String getRating() {
+	public ReviewRating getRating() {
 		return rating;
 	}
 
-	public void setRating(String rating) {
+	public void setRating(ReviewRating rating) {
 		this.rating = rating;
 	}
 

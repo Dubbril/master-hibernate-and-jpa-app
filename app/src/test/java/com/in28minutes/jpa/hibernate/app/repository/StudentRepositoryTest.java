@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.in28minutes.jpa.hibernate.app.AppApplication;
+import com.in28minutes.jpa.hibernate.app.entity.Address;
 import com.in28minutes.jpa.hibernate.app.entity.Passport;
 import com.in28minutes.jpa.hibernate.app.entity.Student;
 
@@ -39,6 +40,16 @@ public class StudentRepositoryTest {
 		logger.info("student -> {} ", student);
 		logger.info("passport -> {} ", student.getPassport());
 
+	}
+	@Test
+	@Transactional
+	public void setAddressDetails() {
+		Student student = em.find(Student.class, 20001L);
+		student.setAddress(new Address("No 101", "Some Street", "Hyderabad"));
+		em.flush();
+		logger.info("student -> {} ", student);
+		logger.info("passport -> {} ", student.getPassport());
+		
 	}
 
 	@Test
